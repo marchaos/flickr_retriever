@@ -5,9 +5,10 @@ const fs = require('fs');
 const download = require('download');
 const parse = require('url').parse;
 
-const API_KEY = '4c60b89801a88d85bcda4455c0947bb2';
-const SECRET = '3619d8cbed0d3786';
-const USER_ID = '9264072@N05';
+const API_KEY = '<YOUR API KEY>';
+const SECRET = '<YOUR SECRET>';
+const USER_ID = '<YOUR USERID>';
+const BATCH_SIZE = 40;
 
 const db = {
     users: new Map(),
@@ -17,7 +18,6 @@ const db = {
 const DEBUG = false;
 const CACHE_PATH = './data';
 const PHOTOS_PATH = './photos';
-const BATCH_SIZE = 40;
 
 const oauth = new Flickr.OAuth(API_KEY, SECRET);
 
