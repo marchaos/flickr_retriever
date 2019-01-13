@@ -7,7 +7,7 @@ Note that you need to register an application within Flickr so get a API Key and
 
 ## Assumptions
 
-This assumes that all of your photos are orgainised into albums / photosets. 
+This assumes that all of your photos are orgainised into albums / photosets. I'll probably add a post process that will attempt to download anything else into a separate folder, but this is currently a TODO item.
 
 ## Installing and Running
 
