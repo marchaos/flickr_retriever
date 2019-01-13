@@ -12,4 +12,6 @@ Note that you need to register an application within Flickr so get a API Key and
 * modify index.js and add your API_KEY and SECRET as well as your USER_ID to the consts. You will probably want to use https://www.webfx.com/tools/idgettr/ to get your user id. 
 * run ```node index.js``` and sit back!
 
+Photos will be downloaded to the ```photos``` dir into folders as they appear in your flickr albums. The ```data``` dir contains the cache of what has been downloaded and the oath cache. If you need to clear it out, you probably want to keep the ```oath``` file and delete everything else.
+
 If you see any Internal Server Error messages, you probably want to re-run the script. It will only process and download things that it has never seen before. 
