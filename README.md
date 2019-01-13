@@ -5,7 +5,7 @@ I created this to download my photos (over 100GB) from flickr before the 12th of
 
 Note that you need to register an application within Flickr so get a API Key and Secret which you will need to put at the top of index.js. Once you've done this, you can run the script, which will prompt you to load a URL in the browser. Do this and authenticate with Flickr. You will only need to do this on the first run of the script since the auth result is cached. 
 
-# Assumptions
+## Assumptions
 
 This assumes that all of your photos are orgainised into albums / photosets. 
 
