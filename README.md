@@ -11,6 +11,7 @@ This assumes that all of your photos are orgainised into albums / photosets. I'l
 
 ## Installing and Running
 
+* Ensure you have a recent version of node (8+ I suspect)
 * Create an app and get your API key and secret here - https://www.flickr.com/services/apps/create/
 * ```npm install```
 * modify index.js and add your API_KEY and SECRET as well as your USER_ID to the consts. You will probably want to use https://www.webfx.com/tools/idgettr/ to get your user id. 
