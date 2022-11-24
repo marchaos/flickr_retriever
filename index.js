@@ -1,13 +1,13 @@
 const Flickr = require('flickr-sdk');
-const http = require('http');
+const https = require('https');
 const path = require('path');
 const fs = require('fs');
 const download = require('download');
 const parse = require('url').parse;
 
-const API_KEY = '<YOUR API KEY>';
-const SECRET = '<YOUR SECRET>';
-const USER_ID = '<YOUR USERID>';
+const API_KEY = '4c60b89801a88d85bcda4455c0947bb2';
+const SECRET = '3619d8cbed0d3786';
+const USER_ID = '9264072@N05';
 const BATCH_SIZE = 40;
 
 const db = {
@@ -17,7 +17,7 @@ const db = {
 
 const DEBUG = false;
 const CACHE_PATH = './data';
-const PHOTOS_PATH = './photos';
+const PHOTOS_PATH = 'F:\\photos';
 
 const oauth = new Flickr.OAuth(API_KEY, SECRET);
 
@@ -136,7 +136,7 @@ const processBatch = async (flickr, batch, photosDir, photoCacheKey, cache) => {
                         }
                     }
 
-                    await download(url, photosDir, { filename: filename || undefined });
+                    await download(url, photosDir, { filename: filename ? filename.replace(/\?|\>|\</g, '') : undefined });
                     cache.push(photo.id);
                     Cache.put(photoCacheKey, cache);
                     console.info(`Saved image ${filename || url} to ${photosDir}`);
@@ -245,11 +245,15 @@ const verifyRequestToken = (req, res, query) => {
             oauthTokenSecret
         ));
 
-        Cache.put('oath').then(() => {
+        try {
+            Cache.put('oath', {
+                oauthToken,
+                oauthTokenSecret
+            });
             startRetrieval(flickr);
-        }).catch(err => {
-            console.err(`Could not store cache file for oath!! ${err}`);
-        });
+        } catch {
+            console.error(`Could not store cache file for oath!! ${err}`, e);
+        }
 
 
     }).catch((err) => {
@@ -271,7 +275,12 @@ Cache.get('oath').then(loginParts => {
     } else {
         console.info('No credentials file, so login');
 
-        http.createServer((req, res) => {
+        var httpsOptions = {
+            key: fs.readFileSync('./server.key'),
+            cert: fs.readFileSync('./server.cert')
+        };
+
+        https.createServer(httpsOptions, (req, res) => {
             const url = parse(req.url, true);
 
             switch (url.pathname) {
